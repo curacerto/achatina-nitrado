@@ -1,7 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { INitradoClient } from '../nitrado/nitrado-client.interface';
 import { ServiceEntity } from './entities/service.entity';
-import { Inject, forwardRef } from '@nestjs/common';
 
 @Injectable()
 export class ServiceRepository {
@@ -11,6 +10,7 @@ export class ServiceRepository {
   ) {}
 
   async getServices(): Promise<ServiceEntity[]> {
-    return await this.nitradoClient.getServices();
+    const serviceResponse = await this.nitradoClient.getServices();
+    return serviceResponse.data.services;
   }
 }

@@ -1,3 +1,4 @@
 ### Get all services
 
 GET http://localhost:3002/service
+Content-Type: application/json
